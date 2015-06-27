@@ -18,6 +18,11 @@ defmodule Touchbaseapi.Router do
     get "/", PageController, :index
   end
 
+  scope "/api/v1/", Touchbaseapi do
+    pipe_through :api
+    resources "/knowledgebases", KnowledgebaseController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Touchbaseapi do
   #   pipe_through :api

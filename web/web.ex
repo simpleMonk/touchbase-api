@@ -30,6 +30,7 @@ defmodule Touchbaseapi.Web do
       alias Touchbaseapi.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
+      import Ecto.DateTime
 
       # Import URL helpers from the router
       import Touchbaseapi.Router.Helpers
