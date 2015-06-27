@@ -12,7 +12,8 @@ defmodule Touchbaseapi.KnowledgebaseController do
   end
 
   def create(conn, %{"knowledgebase" => knowledgebase_params}) do
-    changeset = Knowledgebase.changeset(%Knowledgebase{}, knowledgebase_params)
+    required_params = get_required_post_params(knowledgebase_params)
+    changeset = Knowledgebase.changeset(%Knowledgebase{}, required_params)
     changeset = changeset |> add_created_time_to |> put_uuid |> update_date_to
 
     if changeset.valid? do
@@ -31,8 +32,9 @@ defmodule Touchbaseapi.KnowledgebaseController do
   end
 
   def update(conn, %{"id" => id, "knowledgebase" => knowledgebase_params}) do
+    required_params = get_required_post_params(knowledgebase_params)
     knowledgebase = Repo.get_by!(Knowledgebase,kb_id: id)
-    changeset = Knowledgebase.changeset(knowledgebase, knowledgebase_params) |> update_date_to
+    changeset = Knowledgebase.changeset(knowledgebase, required_params) |> update_date_to
 
     if changeset.valid? do
       knowledgebase = Repo.update!(changeset)
@@ -61,5 +63,11 @@ defmodule Touchbaseapi.KnowledgebaseController do
 
   def put_uuid(changeset) do
     changeset= Ecto.Changeset.put_change(changeset, :kb_id, Ecto.UUID.generate())
+  end
+
+  def get_required_post_params(knowledgebase) do
+    %{"title" => knowledgebase["title"],
+      "short_description" => knowledgebase["short_description"],
+       "detailed_description" => knowledgebase["detailed_description"]}
   end
 end
