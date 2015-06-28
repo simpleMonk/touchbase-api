@@ -2,8 +2,8 @@ defmodule Touchbaseapi.Repo.Migrations.CreateKnowledgebase do
   use Ecto.Migration
 
   def change do
-    create table(:knowledgebases) do
-      add :kb_id, :uuid
+    create table(:knowledgebases,primary_key: false) do
+      add :id, :uuid
       add :title, :string
       add :short_description, :text
       add :detailed_description, :text

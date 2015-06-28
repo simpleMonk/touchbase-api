@@ -22,6 +22,15 @@ defmodule Touchbaseapi.Web do
     end
   end
 
+  def modeluuidpk do
+    quote do
+      use Ecto.Model
+      @primary_key {:id, Ecto.UUID, []}
+      @foreign_key_type Ecto.UUID
+      before_insert Touchbaseapi.UUID, :put_uuid, []
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller

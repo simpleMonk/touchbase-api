@@ -11,7 +11,7 @@ defmodule Touchbaseapi.KnowledgebaseView do
 
   def render("knowledgebase.json", %{knowledgebase: knowledgebase}) do
     %{
-      id: knowledgebase.kb_id,
+      id: knowledgebase.id,
       title: knowledgebase.title,
       short_description: knowledgebase.short_description,
       detailed_description: knowledgebase.detailed_description,

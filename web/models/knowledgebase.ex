@@ -1,8 +1,7 @@
 defmodule Touchbaseapi.Knowledgebase do
-  use Touchbaseapi.Web, :model
+  use Touchbaseapi.Web, :modeluuidpk
 
   schema "knowledgebases" do
-    field :kb_id, Ecto.UUID
     field :title, :string
     field :short_description, :string
     field :detailed_description, :string
@@ -14,7 +13,7 @@ defmodule Touchbaseapi.Knowledgebase do
   end
 
   @required_fields ~w(title short_description detailed_description)
-  @optional_fields ~w(created_date updated_date kb_id)
+  @optional_fields ~w(created_date updated_date)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
