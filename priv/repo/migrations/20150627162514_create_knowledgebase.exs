@@ -3,7 +3,7 @@ defmodule Touchbaseapi.Repo.Migrations.CreateKnowledgebase do
 
   def change do
     create table(:knowledgebases,primary_key: false) do
-      add :id, :uuid
+      add :id, :uuid,primary_key: true
       add :title, :string
       add :short_description, :text
       add :detailed_description, :text
